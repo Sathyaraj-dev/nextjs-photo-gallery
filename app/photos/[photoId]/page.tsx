@@ -14,8 +14,12 @@ type Date = {
 };
 
 const Photo = async ({ params: { photoId } }: Params) => {
-  const formatDate = (string: any) => {
-    let options: Date = { year: "numeric", month: "long", day: "numeric" };
+  const formatDate = (string: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
     return new Date(string).toLocaleDateString([], options);
   };
 
