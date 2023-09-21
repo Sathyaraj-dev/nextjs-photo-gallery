@@ -1,10 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
 const getPhotosData = async () => {
   const res = await fetch(
     "https://api.unsplash.com/photos/?client_id=8rdssbrJIi6CqglgutZRTRTc4TbR5bp3Mm62JvJ5gLM&per_page=16"
