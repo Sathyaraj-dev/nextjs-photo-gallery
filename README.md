@@ -19,4 +19,9 @@ You can check out a live demo of the app [here](https://nextjs-photo-gallery-del
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Unsplash API](https://unsplash.com/developers)
 
+## Screenshot
+
+![nextjs-photo-gallery](https://github.com/Sathyaraj-dev/nextjs-photo-gallery/assets/57762726/4b47e514-6165-4a68-9eac-44be622696a0)
+
+![nextjs-photo-gallery-2](https://github.com/Sathyaraj-dev/nextjs-photo-gallery/assets/57762726/3cf3c94c-3e48-4f6e-aa45-a8eeede9cc86)
 
