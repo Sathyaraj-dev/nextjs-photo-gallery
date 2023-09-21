@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import Search from "../components/Search";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -18,39 +17,61 @@ const getPhotosData = async () => {
   return res.json();
 };
 
-// const searchPhotosData = async () => {
-//   const res = await fetch(
-//     `https://api.unsplash.com/search/photos/?client_id=8rdssbrJIi6CqglgutZRTRTc4TbR5bp3Mm62JvJ5gLM&per_page=8&query=${searchParams}`
-//   );
+const Photos = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
+  //console.log(searchParams?.search);
 
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch search data");
-//   }
+  const searchPhotosData = async () => {
+    const res = await fetch(
+      `https://api.unsplash.com/search/photos/?client_id=8rdssbrJIi6CqglgutZRTRTc4TbR5bp3Mm62JvJ5gLM&per_page=16&query=${searchParams?.search}`
+    );
 
-//   return res.json();
-// };
+    if (!res.ok) {
+      throw new Error("Failed to fetch search data");
+    }
 
-const Photos = async () => {
-  //const searchParams = props.searchParams;
-  //console.log(searchParams);
+    return res.json();
+  };
 
   const photosData: Photos[] = await getPhotosData();
 
-  //if (searchParams) {
-  //const searchPhotos: SearchPhoto[] = await searchPhotosData();
-  //console.log(searchPhotos);
-  // }
+  let searchPhotos: any;
+
+  if (searchParams) {
+    searchPhotos = await searchPhotosData();
+  }
 
   return (
     <>
-      {/* <div className="flex justify-center m-8"> */}
-      {/* <Search /> */}
-      {/* {searchParams && JSON.stringify(searchPhotos?.)} */}
-      {/* </div> */}
       <div className="container mx-auto">
         <div className="rounded-box md:columns-4 gap-4 m-10">
-          {photosData &&
-            photosData?.map((photo) => (
+          {searchPhotos &&
+            searchPhotos?.results?.map((photo: any) => (
+              <div
+                className="overflow-hidden group relative mb-5"
+                key={photo.id}
+              >
+                <Link href={`/photos/${photo.id}`}>
+                  <div className="capitalize font-sans opacity-0 h-24 w-full z-10 flex justify-center items-center bg-blue-700 bg-opacity-60 absolute text-white p-3 -bottom-2 group-hover:opacity-100">
+                    {photo.alt_description}
+                  </div>
+                  <Image
+                    src={photo.urls.small}
+                    alt={photo.alt_description}
+                    width={300}
+                    height={250}
+                    style={{ width: "100%" }}
+                    className="object-cover h-auto max-w-full group-hover:scale-125 transition duration-500 cursor-pointer"
+                  />
+                </Link>
+              </div>
+            ))}
+
+          {!searchParams &&
+            photosData?.map((photo: any) => (
               <div
                 className="overflow-hidden group relative mb-5"
                 key={photo.id}
