@@ -44,3 +44,5 @@ type SearchPhoto = {
         }
     ]
 }
+
+type searchParams= { [key: string]: string | string[] | undefined };
