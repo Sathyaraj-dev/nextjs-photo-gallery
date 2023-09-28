@@ -6,6 +6,7 @@ A simple photo gallery app built with Next.js that utilizes the Unsplash API to 
 
 - Display a grid of beautiful photos from Unsplash
 - View photo details, including the photographer's name and profile link
+- Users can able to search the photos using the search bar
 - Responsive design for various screen sizes
 
 ## Demo
